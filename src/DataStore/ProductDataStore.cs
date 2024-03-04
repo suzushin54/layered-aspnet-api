@@ -7,9 +7,9 @@ namespace src.DataStore
         // This is example data 
         private static List<Product> _products = new()
         {
-            new Product { Id = 1, Name = "Product 1", Price = 100 },
-            new Product { Id = 2, Name = "Product 2", Price = 200 },
-            new Product { Id = 3, Name = "Product 3", Price = 300 },
+            new Product(1, "Product 1", 100),
+            new Product(2, "Product 2", 200),
+            new Product(3, "Product 3", 300),
         };
         
         // This method returns all products

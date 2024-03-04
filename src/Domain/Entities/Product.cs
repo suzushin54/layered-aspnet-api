@@ -1,9 +1,25 @@
+using src.Domain.Enums;
+
 namespace src.Domain.Entities;
 
 public class Product
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public decimal Price { get; set; }
+    public int Id { get; private set; }
+    public string Name { get; private set; }
+    public decimal Price { get; private set; }
+    public ProductStatus Status { get; private set; }
     
+    public Product(int id, string name, decimal price)
+    {
+        if (string.IsNullOrEmpty(name)) 
+            throw new ArgumentException("Name cannot be null or empty", nameof(name));
+
+        if (price < 0)
+            throw new ArgumentException("Price cannot be negative", nameof(price));
+        
+        Id = id;
+        Name = name;
+        Price = price;
+        Status = ProductStatus.InStock;
+    }
 }
