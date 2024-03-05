@@ -1,24 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using src.DataStore;
+using src.Domain.RepositoryInterfaces;
 
 namespace src.Presentation
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+    public class ProductController(IProductRepository productRepository) : ControllerBase
     {
-        private readonly ProductDataStore _productDataStore = new ProductDataStore();
-
         [HttpGet]
         public IActionResult GetProducts()
         {
-            return Ok(_productDataStore.GetProducts());
+            var products = productRepository.GetProducts();
+            return Ok(products);
         }
         
         [HttpGet("{id:int}")]
         public IActionResult GetProductById(int id)
         {
-            var product = _productDataStore.GetProductById(id);
+            var product = productRepository.GetProductById(id);
             if (product == null) return NotFound();
             return Ok(product);
         }
