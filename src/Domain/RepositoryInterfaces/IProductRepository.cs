@@ -1,12 +1,11 @@
 using src.Domain.Entities;
 
-namespace src.Domain.RepositoryInterfaces
+namespace src.Domain.RepositoryInterfaces;
+
+public interface IProductRepository
 {
-    public interface IProductRepository
-    {
-        IEnumerable<Product>? GetProducts();
-        Product? GetProductById(int id);
-        void SaveProduct(Product product);
-        void DeleteProduct(int id);
-    }
+    IEnumerable<Product>? GetProducts();
+    Product? GetProductById(int id);
+    void SaveProduct(Product product);
+    void DeleteProduct(int id);
 }
