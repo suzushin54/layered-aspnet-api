@@ -5,7 +5,7 @@ namespace src.Domain.RepositoryInterfaces;
 public interface IProductRepository
 {
     IEnumerable<Product>? GetProducts();
-    Product? GetProductById(int id);
+    Product? GetProductById(Guid id);
     void SaveProduct(Product product);
-    void DeleteProduct(int id);
+    void DeleteProduct(Guid id);
 }

@@ -4,12 +4,12 @@ namespace src.Domain.Entities;
 
 public class Product
 {
-    public int Id { get; private set; }
+    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public decimal Price { get; private set; }
     public ProductStatus Status { get; private set; }
     
-    public Product(int id, string name, decimal price)
+    public Product(Guid id, string name, decimal price)
     {
         if (string.IsNullOrEmpty(name)) 
             throw new ArgumentException("Name cannot be null or empty", nameof(name));

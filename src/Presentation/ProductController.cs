@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using src.DataStore;
 using src.Domain.RepositoryInterfaces;
 
 namespace src.Presentation;
@@ -15,8 +14,8 @@ public class ProductController(IProductRepository productRepository) : Controlle
         return Ok(products);
     }
 
-    [HttpGet("{id:int}")]
-    public IActionResult GetProductById(int id)
+    [HttpGet("{id:Guid}")]
+    public IActionResult GetProductById(Guid id)
     {
         var product = productRepository.GetProductById(id);
         if (product == null) return NotFound();

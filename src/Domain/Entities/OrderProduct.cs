@@ -3,13 +3,13 @@ namespace src.Domain.Entities;
 public class OrderProduct
 {
     public Guid Id { get; private set; }
-    public int ProductId { get; private set; }
+    public Guid ProductId { get; private set; }
     public int Quantity { get; private set; }
     public decimal Price { get; private set; }
     
-    public OrderProduct(int productId, int quantity, decimal price)
+    public OrderProduct(Guid productId, int quantity, decimal price)
     {
-        if (productId <= 0)
+        if (productId == Guid.Empty)
             throw new ArgumentException("Product id cannot be less than or equal to zero", nameof(productId));
         
         if (quantity <= 0)

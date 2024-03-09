@@ -11,9 +11,9 @@ public class InMemoryProductRepository : IProductRepository
     {
         _products =
         [
-            new Product(1, "Product 1", 1000),
-            new Product(2, "Product 2", 2000),
-            new Product(3, "Product 3", 3000)
+            new Product(new Guid(), "Keyboard", 20.0m),
+            new Product(new Guid(), "Mouse", 10.0m),
+            new Product(new Guid(), "Monitor", 100.0m),
         ];
     }
 
@@ -22,7 +22,7 @@ public class InMemoryProductRepository : IProductRepository
         return _products;
     }
 
-    public Product? GetProductById(int id)
+    public Product? GetProductById(Guid id)
     {
         return _products?.FirstOrDefault(p => p.Id == id);
     }
@@ -32,7 +32,7 @@ public class InMemoryProductRepository : IProductRepository
         throw new NotImplementedException();
     }
 
-    public void DeleteProduct(int id)
+    public void DeleteProduct(Guid id)
     {
         throw new NotImplementedException();
     }
