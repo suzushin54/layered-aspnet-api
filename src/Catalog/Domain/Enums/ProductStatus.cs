@@ -1,4 +1,4 @@
-namespace src.Domain.Enums;
+namespace src.Catalog.Domain.Enums;
 
 public enum ProductStatus
 {

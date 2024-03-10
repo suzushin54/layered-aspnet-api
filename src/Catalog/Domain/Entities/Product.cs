@@ -1,6 +1,6 @@
-using src.Domain.Enums;
+using src.Catalog.Domain.Enums;
 
-namespace src.Domain.Entities;
+namespace src.Catalog.Domain.Entities;
 
 public class Product
 {

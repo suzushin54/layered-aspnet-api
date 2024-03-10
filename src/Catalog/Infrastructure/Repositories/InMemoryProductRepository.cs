@@ -1,7 +1,7 @@
-using src.Domain.Entities;
-using src.Domain.RepositoryInterfaces;
+using src.Catalog.Domain.Entities;
+using src.Catalog.Domain.RepositoryInterfaces;
 
-namespace src.DataStore.Repositories;
+namespace src.Catalog.Infrastructure.Repositories;
 
 public class InMemoryProductRepository : IProductRepository
 {

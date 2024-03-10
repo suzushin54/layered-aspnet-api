@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using src.Domain.RepositoryInterfaces;
+using src.Catalog.Domain.RepositoryInterfaces;
 
 namespace src.Presentation;
 

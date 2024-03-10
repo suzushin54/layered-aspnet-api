@@ -1,6 +1,6 @@
-using src.Domain.Entities;
+using src.Catalog.Domain.Entities;
 
-namespace src.Domain.RepositoryInterfaces;
+namespace src.Catalog.Domain.RepositoryInterfaces;
 
 public interface IProductRepository
 {

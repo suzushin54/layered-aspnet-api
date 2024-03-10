@@ -1,6 +1,6 @@
-using src.Domain.Entities;
+using src.Ordering.Domain.Entities;
 
-namespace src.Domain.RepositoryInterfaces;
+namespace src.Ordering.Domain.RepositoryInterfaces;
 
 public interface IOrderRepository
 {

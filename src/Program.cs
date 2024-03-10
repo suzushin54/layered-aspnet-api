@@ -1,5 +1,7 @@
-using src.DataStore.Repositories;
-using src.Domain.RepositoryInterfaces;
+using src.Catalog.Domain.RepositoryInterfaces;
+using src.Catalog.Infrastructure.Repositories;
+using src.Ordering.Domain.RepositoryInterfaces;
+using src.Ordering.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

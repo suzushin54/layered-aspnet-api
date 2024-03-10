@@ -1,7 +1,7 @@
-using src.Domain.Entities;
-using src.Domain.RepositoryInterfaces;
+using src.Ordering.Domain.Entities;
+using src.Ordering.Domain.RepositoryInterfaces;
 
-namespace src.DataStore.Repositories;
+namespace src.Ordering.Infrastructure.Repositories;
 
 public class InMemoryOrderRepository : IOrderRepository
 {

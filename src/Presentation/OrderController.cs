@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using src.Domain.Entities;
-using src.Domain.RepositoryInterfaces;
+using src.Ordering.Domain.Entities;
+using src.Ordering.Domain.RepositoryInterfaces;
 using src.Presentation.Dto;
 
 namespace src.Presentation;

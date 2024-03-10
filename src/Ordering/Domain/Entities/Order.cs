@@ -1,4 +1,4 @@
-namespace src.Domain.Entities;
+namespace src.Ordering.Domain.Entities;
 
 public class Order
 {
