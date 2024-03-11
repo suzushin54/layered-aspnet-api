@@ -1,3 +1,4 @@
+using src.Catalog.ApplicationService;
 using src.Catalog.Domain.RepositoryInterfaces;
 using src.Catalog.Infrastructure.Repositories;
 using src.Ordering.Domain.RepositoryInterfaces;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
 builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
 

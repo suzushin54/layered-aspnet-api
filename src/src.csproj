@@ -13,7 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Catalog\Service\" />
+      <Folder Include="CMS\Domain\" />
+      <Folder Include="CMS\Infrastructure\" />
       <Folder Include="Ordering\Service\" />
     </ItemGroup>
 

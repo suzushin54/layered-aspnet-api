@@ -17,23 +17,13 @@ public class InMemoryProductRepository : IProductRepository
         ];
     }
 
-    public IEnumerable<Product>? GetProducts()
+    public IEnumerable<Product> GetProducts()
     {
-        return _products;
+        return _products ?? Enumerable.Empty<Product>();
     }
 
     public Product? GetProductById(Guid id)
     {
         return _products?.FirstOrDefault(p => p.Id == id);
-    }
-
-    public void SaveProduct(Product product)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DeleteProduct(Guid id)
-    {
-        throw new NotImplementedException();
     }
 }
