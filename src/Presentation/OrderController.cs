@@ -1,39 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
-using src.Ordering.Domain.Entities;
-using src.Ordering.Domain.RepositoryInterfaces;
-using src.Presentation.Dto;
+using src.Ordering.ApplicationService;
+using src.Ordering.ApplicationService.Dto;
 
 namespace src.Presentation;
 
 [ApiController]
 [Route("api/[controller]")]
-public class OrderController(IOrderRepository orderRepository) : ControllerBase
+public class OrderController(IOrderService orderService) : ControllerBase
 {
     [HttpGet]
     public IActionResult GetOrders()
     {
-        var orders = orderRepository.GetOrders();
+        var orders = orderService.GetOrders();
         return Ok(orders);
     }
     
     [HttpPost]
     public IActionResult CreateOrder([FromBody] CreateOrderDto createOrderDto)
     {
-        if (createOrderDto == null)
+        if (createOrderDto.OrderProducts.Count == 0)
         {
-            return BadRequest("Order data is required.");
+            return BadRequest(new { message = "Order must have at least one product" });
         }
-        
-        // debug log
-        Console.WriteLine("CreateOrderDto: " + createOrderDto);
 
-        var orderProducts = createOrderDto.OrderProducts.Select(
-            op => new OrderProduct(op.ProductId, op.Quantity, op.Price)).ToList();
+        orderService.CreateOrder(createOrderDto);
 
-        var order = new Order(createOrderDto.TotalPrice, orderProducts, createOrderDto.ShippingAddress);
-
-        orderRepository.Save(order);
-
-        return Ok(new { orderId = order.Id, message = "Order created successfully" });
+        return Ok(new { message = "Order created successfully" });
     }
 }

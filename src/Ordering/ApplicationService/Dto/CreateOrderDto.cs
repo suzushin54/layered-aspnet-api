@@ -1,4 +1,4 @@
-namespace src.Presentation.Dto;
+namespace src.Ordering.ApplicationService.Dto;
 
 public class CreateOrderDto
 {

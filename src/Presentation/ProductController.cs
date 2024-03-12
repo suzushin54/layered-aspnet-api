@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using src.Catalog.ApplicationService;
-using src.Catalog.Domain.RepositoryInterfaces;
 
 namespace src.Presentation;
 
