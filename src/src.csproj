@@ -15,7 +15,6 @@
     <ItemGroup>
       <Folder Include="CMS\Domain\" />
       <Folder Include="CMS\Infrastructure\" />
-      <Folder Include="Ordering\Service\" />
     </ItemGroup>
 
 </Project>
