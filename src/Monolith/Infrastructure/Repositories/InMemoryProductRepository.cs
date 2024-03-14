@@ -11,9 +11,9 @@ public class InMemoryProductRepository : IProductRepository
     {
         _products =
         [
-            new Product(new Guid(), "Keyboard", 222.0m),
-            new Product(new Guid(), "Mouse", 1980.0m),
-            new Product(new Guid(), "Monitor", 244998.0m),
+            new Product(Guid.NewGuid(), "Product 1", "Description 1", "https://example.com/image1.jpg", "Manufacturer 1", 100, true, 10, true, 1),
+            new Product(Guid.NewGuid(), "Product 2", "Description 2", "https://example.com/image2.jpg", "Manufacturer 2", 200, false, 20, false, 2),
+            new Product(Guid.NewGuid(), "Product 3", "Description 3", "https://example.com/image3.jpg", "Manufacturer 3", 300, true, 30, true, 3),
         ];
     }
 
