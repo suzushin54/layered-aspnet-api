@@ -6,39 +6,31 @@ public class Product
 {
     // 商品ID
     public Guid Id { get; private set; }
-
     // 商品名
     public string Name { get; private set; }
-
     // 商品説明
     public string Description { get; private set; }
-
     // 商品画像URL
     public string ImageUrl { get; private set; }
-
     // メーカー
     public string Manufacturer { get; private set; }
-
     // 価格
     public decimal Price { get; private set; }
-
     // 商品ステータス
     public ProductStatus Status { get; private set; }
-
     // 定期購入可能商品
     public bool CanSubscribe { get; private set; }
-
+    // 受注生産品フラグ
+    public bool IsMadeToOrder { get; private set; }
     // 個数
     public int Quantity { get; private set; }
-
     // 軽減税率対象
     public bool IsReducedTax { get; private set; }
-
     // 表示順
     public int DisplayOrder { get; private set; }
 
     public Product(Guid id, string name, string description, string imageUrl, string manufacturer, decimal price,
-        bool canSubscribe, int quantity, bool isReducedTax, int displayOrder)
+        bool canSubscribe, bool isMadeToOrder, int quantity, bool isReducedTax, int displayOrder)
     {
         if (string.IsNullOrEmpty(name))
             throw new ArgumentException("Name cannot be null or empty", nameof(name));
@@ -69,8 +61,26 @@ public class Product
         Price = price;
         Status = ProductStatus.InStock;
         CanSubscribe = canSubscribe;
+        IsMadeToOrder = isMadeToOrder;
         Quantity = quantity;
         IsReducedTax = isReducedTax;
         DisplayOrder = displayOrder;
+    }
+    
+    // 最初にありがちなメソッド
+    // 通常商品と一緒に購入可能かどうかを判断
+    public bool IsPurchaseWith()
+    {
+        // 受注生産かどうかで判断している。意味はわかるが、この手のメソッドが量産されそうな気配を感じる
+        return !IsMadeToOrder;
+    }
+    
+    // 次に見かけるメソッド
+    // この商品が他の商品と同時に購入可能かどうかを判断
+    public bool CanPurchaseWith(Product product)
+    {
+        // 受注生産と通常商品の組み合わせは同時に購入できないというルールがあることがわかる
+        // しかしProductがProductを受け取って判断しているのは違和感がある
+        return IsMadeToOrder != product.IsMadeToOrder;
     }
 }
