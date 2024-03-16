@@ -11,9 +11,10 @@ public class InMemoryProductRepository : IProductRepository
     {
         _products =
         [
-            new Product(Guid.NewGuid(), "Product 1", "Description 1", "https://example.com/image1.jpg", "Manufacturer 1", 100, true, 10, true, 1),
-            new Product(Guid.NewGuid(), "Product 2", "Description 2", "https://example.com/image2.jpg", "Manufacturer 2", 200, false, 20, false, 2),
-            new Product(Guid.NewGuid(), "Product 3", "Description 3", "https://example.com/image3.jpg", "Manufacturer 3", 300, true, 30, true, 3),
+            new Product(Guid.NewGuid(), "Product1", "Book", "Description1", "https://example.com/image1.jpg", "Manufacturer1", 100, true, false, 10, true, 1),
+            new Product(Guid.NewGuid(), "Product2", "Video", "Description2", "https://example.com/image2.jpg", "Manufacturer2", 200, false, true, 20, false, 2),
+            new Product(Guid.NewGuid(), "Product3", "Stationery", "Description3", "https://example.com/image3.jpg", "Manufacturer3", 300, true, false, 30, true, 3),
+            new Product(Guid.NewGuid(), "Product4", "Book", "Description4", "https://example.com/image4.jpg", "Manufacturer4", 400, false, true, 40, false, 4),
         ];
     }
 
@@ -27,3 +28,4 @@ public class InMemoryProductRepository : IProductRepository
         return _products?.FirstOrDefault(p => p.Id == id);
     }
 }
+            

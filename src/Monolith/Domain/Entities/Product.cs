@@ -4,32 +4,49 @@ namespace src.Monolith.Domain.Entities;
 
 public class Product
 {
+    // 最大注文可能個数
+    public const int MaxOrderQuantity = 20;
+
     // 商品ID
     public Guid Id { get; private set; }
+
     // 商品名
     public string Name { get; private set; }
+
+    // カテゴリ
+    public string Category { get; private set; }
+    
     // 商品説明
     public string Description { get; private set; }
+
     // 商品画像URL
     public string ImageUrl { get; private set; }
+
     // メーカー
     public string Manufacturer { get; private set; }
+
     // 価格
     public decimal Price { get; private set; }
+
     // 商品ステータス
     public ProductStatus Status { get; private set; }
+
     // 定期購入可能商品
     public bool CanSubscribe { get; private set; }
+
     // 受注生産品フラグ
     public bool IsMadeToOrder { get; private set; }
+
     // 個数
     public int Quantity { get; private set; }
+
     // 軽減税率対象
     public bool IsReducedTax { get; private set; }
+
     // 表示順
     public int DisplayOrder { get; private set; }
 
-    public Product(Guid id, string name, string description, string imageUrl, string manufacturer, decimal price,
+    public Product(Guid id, string name, string category, string description, string imageUrl, string manufacturer, decimal price,
         bool canSubscribe, bool isMadeToOrder, int quantity, bool isReducedTax, int displayOrder)
     {
         if (string.IsNullOrEmpty(name))
@@ -55,6 +72,7 @@ public class Product
 
         Id = id;
         Name = name;
+        Category = category;
         Description = description;
         ImageUrl = imageUrl;
         Manufacturer = manufacturer;
@@ -66,7 +84,7 @@ public class Product
         IsReducedTax = isReducedTax;
         DisplayOrder = displayOrder;
     }
-    
+
     // 最初にありがちなメソッド
     // 通常商品と一緒に購入可能かどうかを判断
     public bool IsPurchaseWith()
@@ -74,7 +92,7 @@ public class Product
         // 受注生産かどうかで判断している。意味はわかるが、この手のメソッドが量産されそうな気配を感じる
         return !IsMadeToOrder;
     }
-    
+
     // 次に見かけるメソッド
     // この商品が他の商品と同時に購入可能かどうかを判断
     public bool CanPurchaseWith(Product product)
@@ -83,4 +101,20 @@ public class Product
         // しかしProductがProductを受け取って判断しているのは違和感がある
         return IsMadeToOrder != product.IsMadeToOrder;
     }
+    
+    // 動画と書籍を一緒に買うと割引
+    // これは実際には購入に関するルールであるが、ProductがCategoryを持っているためここに書かれてしまっている
+    public bool IsSetDiscount(Product[] products)
+    {
+        return products.Any(p => p.Category == "動画") && products.Any(p => p.Category == "書籍");
+    }
+    
+    // まとめて購入できる個数の範囲内かどうか
+    // これも実際には購入に関するルールである
+    public bool IsWithinPurchaseLimit()
+    {
+        return MaxOrderQuantity >= Quantity; 
+    }
+    
+    
 }
