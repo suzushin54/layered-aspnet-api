@@ -49,7 +49,10 @@ public class Order
         ShippingAddress = shippingAddress;
         OrderDate = orderDate;
 
-        // 割引のルールを適用
+        // NOTE: 複数の割引が存在しており、割引順が不具合を生みそうな気配がある
+        // 新商品割引
+        ApplyNewReleaseDiscount();
+        // セット割引 
         ApplySetDiscount();
         // 送料計算
         ApplyFreeShipping();
@@ -63,6 +66,16 @@ public class Order
         if (OrderProducts.Any(p => p.Category == "Video") && OrderProducts.Any(p => p.Category == "Book"))
         {
             TotalPrice *= 0.7m;
+        }
+    }
+    
+    // 新商品はその単価が10%割引される
+    private void ApplyNewReleaseDiscount()
+    {
+        // OrderProductsを走査して、新商品だったら割引していく
+        foreach (var product in OrderProducts.Where(product => product.IsNewRelease))
+        {
+            SubTotal -= product.Price * 0.1m;
         }
     }
 

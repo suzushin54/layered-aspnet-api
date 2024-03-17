@@ -15,7 +15,7 @@ public class Product
 
     // カテゴリ
     public string Category { get; private set; }
-    
+
     // 商品説明
     public string Description { get; private set; }
 
@@ -30,6 +30,9 @@ public class Product
 
     // 商品ステータス
     public ProductStatus Status { get; private set; }
+
+    // 新商品フラグ
+    public bool IsNewRelease { get; private set; }
 
     // 定期購入可能商品
     public bool CanSubscribe { get; private set; }
@@ -46,8 +49,9 @@ public class Product
     // 表示順
     public int DisplayOrder { get; private set; }
 
-    public Product(Guid id, string name, string category, string description, string imageUrl, string manufacturer, decimal price,
-        bool canSubscribe, bool isMadeToOrder, int quantity, bool isReducedTax, int displayOrder)
+    public Product(Guid id, string name, string category, string description, string imageUrl, string manufacturer,
+        decimal price, bool isNewRelease, bool canSubscribe, bool isMadeToOrder, int quantity, bool isReducedTax,
+        int displayOrder)
     {
         if (string.IsNullOrEmpty(name))
             throw new ArgumentException("Name cannot be null or empty", nameof(name));
@@ -78,6 +82,7 @@ public class Product
         Manufacturer = manufacturer;
         Price = price;
         Status = ProductStatus.InStock;
+        IsNewRelease = isNewRelease;
         CanSubscribe = canSubscribe;
         IsMadeToOrder = isMadeToOrder;
         Quantity = quantity;
@@ -101,20 +106,18 @@ public class Product
         // しかしProductがProductを受け取って判断しているのは違和感がある
         return IsMadeToOrder != product.IsMadeToOrder;
     }
-    
+
     // 動画と書籍を一緒に買うと割引
     // これは実際には購入に関するルールであるが、ProductがCategoryを持っているためここに書かれてしまっている
     public bool IsSetDiscount(Product[] products)
     {
         return products.Any(p => p.Category == "動画") && products.Any(p => p.Category == "書籍");
     }
-    
+
     // まとめて購入できる個数の範囲内かどうか
     // これも実際には購入に関するルールである
     public bool IsWithinPurchaseLimit()
     {
-        return MaxOrderQuantity >= Quantity; 
+        return MaxOrderQuantity >= Quantity;
     }
-    
-    
 }
