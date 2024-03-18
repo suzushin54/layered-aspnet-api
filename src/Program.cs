@@ -9,7 +9,12 @@ using MonolithIProductService = src.Monolith.ApplicationService.IProductService;
 using MonolithProductService = src.Monolith.ApplicationService.ProductService;
 using MonolithIProductRepository = src.Monolith.Domain.RepositoryInterfaces.IProductRepository;
 using MonolithProductRepository = src.Monolith.Infrastructure.Repositories.InMemoryProductRepository;
-    
+
+using MonolithIOrderService = src.Monolith.ApplicationService.IOrderService;
+using MonolithOrderService = src.Monolith.ApplicationService.OrderService;
+using MonolithIOrderRepository = src.Monolith.Domain.RepositoryInterfaces.IOrderRepository;
+using MonolithOrderRepository = src.Monolith.Infrastructure.Repositories.InMemoryOrderRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,6 +29,8 @@ builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
 
 builder.Services.AddSingleton<MonolithIProductService, MonolithProductService>();
 builder.Services.AddSingleton<MonolithIProductRepository, MonolithProductRepository>();
+builder.Services.AddSingleton<MonolithIOrderService, MonolithOrderService>();
+builder.Services.AddSingleton<MonolithIOrderRepository, MonolithOrderRepository>();
 
 var app = builder.Build();
 

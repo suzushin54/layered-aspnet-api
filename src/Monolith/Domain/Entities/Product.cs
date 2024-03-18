@@ -41,7 +41,7 @@ public class Product
     public bool IsMadeToOrder { get; private set; }
 
     // 個数
-    public int Quantity { get; private set; }
+    public int Quantity { get; set; }
 
     // 軽減税率対象
     public bool IsReducedTax { get; private set; }
