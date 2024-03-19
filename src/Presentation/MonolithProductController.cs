@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using src.Monolith.ApplicationService;
+using src.Monolith.ApplicationService.Dto;
 
 namespace src.Presentation;
 
@@ -20,5 +21,12 @@ public class MonolithProductController(IProductService productService) : Control
         var product = productService.GetProductById(id);
         if (product == null) return NotFound();
         return Ok(product);
+    }
+    
+    [HttpPost]
+    public IActionResult CreateProduct([FromBody] CreateMonolithProductDto createMonolithProductDto)
+    {
+        productService.CreateProduct(createMonolithProductDto);
+        return Ok(new { message = "Product created successfully" });
     }
 }

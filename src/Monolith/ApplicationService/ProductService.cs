@@ -1,3 +1,4 @@
+using src.Monolith.ApplicationService.Dto;
 using src.Monolith.Domain.Entities;
 using src.Monolith.Domain.RepositoryInterfaces;
 
@@ -7,6 +8,8 @@ public interface IProductService
 {
     IEnumerable<Product> GetProducts();
     Product? GetProductById(Guid id);
+    
+    void CreateProduct(CreateMonolithProductDto createMonolithProductDto);
 }
 
 public class ProductService : IProductService
@@ -26,5 +29,26 @@ public class ProductService : IProductService
     public Product? GetProductById(Guid id)
     {
         return _productRepository.GetProductById(id);
+    }
+    
+    public void CreateProduct(CreateMonolithProductDto createMonolithProductDto)
+    {
+       var product = new Product(
+           Guid.NewGuid(),
+           createMonolithProductDto.Name,
+           createMonolithProductDto.Category,
+           createMonolithProductDto.Description,
+           createMonolithProductDto.ImageUrl,
+           createMonolithProductDto.Manufacturer,
+           createMonolithProductDto.Price,
+           createMonolithProductDto.IsNewRelease,
+           createMonolithProductDto.CanSubscribe,
+           createMonolithProductDto.IsMadeToOrder,
+           createMonolithProductDto.Quantity,
+           createMonolithProductDto.IsReducedTax,
+           createMonolithProductDto.DisplayOrder
+       );
+     
+       // TODO: save product
     }
 }
