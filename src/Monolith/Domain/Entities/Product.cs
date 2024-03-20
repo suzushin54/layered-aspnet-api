@@ -40,6 +40,9 @@ public class Product
     // 受注生産品フラグ
     public bool IsMadeToOrder { get; private set; }
 
+    // OOC2020記念グッズフラグ (NOTE: 終売しているが管理画面で参照)
+    public bool IsOoc2020Goods { get; private set; }
+
     // 個数
     public int Quantity { get; set; }
 

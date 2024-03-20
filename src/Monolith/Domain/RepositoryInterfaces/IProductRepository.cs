@@ -6,4 +6,5 @@ public interface IProductRepository
 {
     IEnumerable<Product> GetProducts();
     Product? GetProductById(Guid id);
+    void Save(Product product);
 }

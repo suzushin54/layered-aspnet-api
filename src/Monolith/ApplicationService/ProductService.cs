@@ -49,6 +49,6 @@ public class ProductService : IProductService
            createMonolithProductDto.DisplayOrder
        );
      
-       // TODO: save product
+       _productRepository.Save(product);
     }
 }

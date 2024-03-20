@@ -31,4 +31,10 @@ public class InMemoryProductRepository : IProductRepository
     {
         return _products?.FirstOrDefault(p => p.Id == id);
     }
+    
+    public void Save(Product product)
+    {
+        _products ??= new List<Product>();
+        _products.Add(product);
+    }
 }
