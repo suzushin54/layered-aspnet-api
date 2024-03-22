@@ -5,6 +5,11 @@ using src.Ordering.ApplicationService;
 using src.Ordering.Domain.RepositoryInterfaces;
 using src.Ordering.Infrastructure.Repositories;
 
+using MonolithICustomerService = src.Monolith.ApplicationService.ICustomerService;
+using MonolithCustomerService = src.Monolith.ApplicationService.CustomerService;
+using MonolithICustomerRepository = src.Monolith.Domain.RepositoryInterfaces.ICustomerRepository;
+using MonolithCustomerRepository = src.Monolith.Infrastructure.Repositories.InMemoryCustomerRepository;
+
 using MonolithIProductService = src.Monolith.ApplicationService.IProductService;
 using MonolithProductService = src.Monolith.ApplicationService.ProductService;
 using MonolithIProductRepository = src.Monolith.Domain.RepositoryInterfaces.IProductRepository;
@@ -27,6 +32,8 @@ builder.Services.AddSingleton<IOrderService, OrderService>();
 builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
 builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
 
+builder.Services.AddSingleton<MonolithICustomerService, MonolithCustomerService>();
+builder.Services.AddSingleton<MonolithICustomerRepository, MonolithCustomerRepository>();
 builder.Services.AddSingleton<MonolithIProductService, MonolithProductService>();
 builder.Services.AddSingleton<MonolithIProductRepository, MonolithProductRepository>();
 builder.Services.AddSingleton<MonolithIOrderService, MonolithOrderService>();
