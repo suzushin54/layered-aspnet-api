@@ -20,6 +20,11 @@ using MonolithOrderService = src.Monolith.ApplicationService.OrderService;
 using MonolithIOrderRepository = src.Monolith.Domain.RepositoryInterfaces.IOrderRepository;
 using MonolithOrderRepository = src.Monolith.Infrastructure.Repositories.InMemoryOrderRepository;
 
+// QueryService
+using MonolithICustomerMyPage = src.Monolith.ApplicationService.QueryServiceInterface.ICustomerMyPage;
+using MonolithCustomerMyPageQueryService = src.Monolith.Infrastructure.QueryService.CustomerMyPageQueryService;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -38,6 +43,8 @@ builder.Services.AddSingleton<MonolithIProductService, MonolithProductService>()
 builder.Services.AddSingleton<MonolithIProductRepository, MonolithProductRepository>();
 builder.Services.AddSingleton<MonolithIOrderService, MonolithOrderService>();
 builder.Services.AddSingleton<MonolithIOrderRepository, MonolithOrderRepository>();
+
+builder.Services.AddSingleton<MonolithICustomerMyPage, MonolithCustomerMyPageQueryService>();
 
 var app = builder.Build();
 

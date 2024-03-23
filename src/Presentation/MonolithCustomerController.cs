@@ -22,4 +22,10 @@ public class MonolithCustomerController(ICustomerService customerService) : Cont
         return Ok(customer);
     }
     
+    [HttpGet("{id:Guid}/mypage")]
+    public IActionResult GetCustomerMyPage(Guid id)
+    {
+        var customerMyPage = customerService.GetCustomerMyPage(id);
+        return Ok(customerMyPage);
+    }
 }

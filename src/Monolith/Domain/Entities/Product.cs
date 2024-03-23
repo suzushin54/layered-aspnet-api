@@ -9,40 +9,30 @@ public class Product
 
     // 商品ID
     public Guid Id { get; private set; }
-
     // 商品名
     public string Name { get; private set; }
-
     // カテゴリ
     public string Category { get; private set; }
-
     // 商品説明
     public string Description { get; private set; }
-
     // 商品画像URL
     public string ImageUrl { get; private set; }
-
     // メーカー
     public string Manufacturer { get; private set; }
-
+    // 出荷元
+    public string Shipper { get; private set; }
     // 価格
     public decimal Price { get; private set; }
-
     // 商品ステータス
     public ProductStatus Status { get; private set; }
-
     // 新商品フラグ
     public bool IsNewRelease { get; private set; }
-
     // 定期購入可能商品
     public bool CanSubscribe { get; private set; }
-
     // 受注生産品フラグ
     public bool IsMadeToOrder { get; private set; }
-
     // OOC2020記念グッズフラグ (NOTE: 終売しているが管理画面で参照)
     public bool IsOoc2020Goods { get; private set; }
-
     // 個数
     public int Quantity { get; set; }
 
